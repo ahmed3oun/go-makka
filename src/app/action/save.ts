@@ -46,11 +46,25 @@ export const save = async (state: SaveFormState, formData: FormData): Promise<Sa
             .returning()
         const user = user_data[0];
 
-        console.log({ user });
+        if (!user) {
+            return {
+                message: 'An error occurred while creating your account.',
+            };
+        }
+
+        const userId = user.id.toString();
+
+        console.log('User created with ID:', userId);
+        return {
+            message: `User with id ${user.id} created successfully!`
+        };
 
 
     } catch (error) {
-
+        console.log('Error checking existing user:', error);
+        return {
+            message: error instanceof Error ? error.message : 'An error occurred while creating your account.',
+        }
     }
     // try {
     // const existedUser = await db.query.users.findFirst({
