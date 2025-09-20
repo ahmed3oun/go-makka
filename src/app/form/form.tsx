@@ -5,10 +5,23 @@ import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { save } from '@/app/action/save';
 import { useFormStatus } from 'react-dom';
-import { useActionState } from 'react';
+import { use, useActionState, useEffect } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 export default function Form() {
     const [state, action] = useActionState(save, undefined);
+
+    const { toast } = useToast()
+
+    useEffect(() => {
+        if (state?.message) {
+            toast({
+                    variant: "default",
+                    title: "Success! 🎉",
+                    description: state.message,
+                })
+        }
+    }, [state])
 
     return (
         <form action={action}>
