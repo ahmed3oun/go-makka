@@ -6,6 +6,10 @@ import { users } from "@/drizzle/schema";
 import supabase from "@/drizzle/client";
 
 export const save = async (state: SaveFormState, formData: FormData): Promise<SaveFormState> => {
+    console.log(`${process.env.NODE_ENV} env`);
+    console.log(`${process.env.DATABASE_URL} database url`);
+    console.log(`${process.env.POSTGRES_URL} database url`);
+
     const validatedFields = SaveFormSchema.safeParse({
         name: formData.get('name'),
         email: formData.get('email'),
