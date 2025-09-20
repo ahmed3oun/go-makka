@@ -8,7 +8,7 @@ export const users = pgTable(
     {
         id: serial('id').primaryKey(),
         name: text('name').notNull(),
-        email: text('name').unique().notNull(),
+        email: text('email').unique().notNull(),
         passport: text('passport').notNull(),
         createdAt: timestamp("created_at").notNull().defaultNow(),
         updatedAt: timestamp("updated_at").notNull().defaultNow().$onUpdate(() => new Date()),
