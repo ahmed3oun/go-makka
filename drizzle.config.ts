@@ -5,6 +5,7 @@ export default defineConfig({
     out: "./src/drizzle/migrations",
     dialect: "postgresql",
     dbCredentials: {
-        url: process.env.DATABASE_URL!,
+        url: process.env.DATABASE_URL || "postgresql://postgres.wuuuqnvhvrkdwmdcmulj:RGmERXSVQxrssMiQ@aws-1-eu-west-3.pooler.supabase.com:6543/postgres",
+
     }
 })
